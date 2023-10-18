@@ -33,58 +33,26 @@ function home() {
   console.log('sf')
 }
 
-function event() {
-  const s2 = new Splide('.sponsors__slider', {
-    arrows: false,
-    pagination: false,
-    gap: '4rem',
-    type: 'loop',
-    // focus: 'center',
-    autoWidth: true,
-    autoScroll: { speed: 1, autoStart: false },
-  })
-  const Components = s2.Components
-  // to remove duplicates for inactive/small slider
-  s2.on('overflow', function (isOverflow) {
-    s2.go(0) // Reset the carousel position
+function event() {}
+const testSlider = new Splide('.testimonials__slider', {
+  arrows: false,
+  pagination: false,
+  gap: '4rem',
+  type: 'loop',
+  perPage: 2,
+  // focus: 'center',
+  // autoWidth: true,
+  breakpoints: {
+    991: {
+      perPage: 1,
+    },
+  },
+  autoScroll: { speed: 1, autoStart: false },
+}).mount({ AutoScroll })
 
-    s2.options = {
-      focus: isOverflow ? 'center' : '',
-      drag: isOverflow ? 'free' : false,
-      clones: isOverflow ? undefined : 0, // Toggle clones
-    }
-  })
-  let s2Overflow = true
-  let s2Ready = false
-  // to center inactive/small slider
-  s2.on('resized', function () {
-    var isOverflow = Components.Layout.isOverflow()
-    s2Overflow = isOverflow
-    var list = Components.Elements.list
-    var lastSlide = Components.Slides.getAt(s2.length - 1)
-
-    if (lastSlide) {
-      // Toggles `justify-content: center`
-      list.style.justifyContent = isOverflow ? '' : 'center'
-
-      // Remove the last margin
-      if (!isOverflow) {
-        lastSlide.slide.style.marginRight = ''
-        // console.log('asdf')
-      }
-    }
-    if (s2Ready) {
-      s2PlayInit()
-    }
-  })
-  s2.on('mounted', s2PlayInit)
-  function s2PlayInit() {
-    s2Ready = true
-    if (!s2Overflow) {
-      s2.Components.AutoScroll.pause()
-    } else if (s2Overflow && s2.Components.AutoScroll.isPaused()) {
-      s2.Components.AutoScroll.play()
-    }
-  }
-  s2.mount({ AutoScroll })
-}
+sel('.testimonials__arrows .arrow--left').addEventListener('click', (e) => {
+  testSlider.go('+1')
+})
+sel('.testimonials__arrows .arrow:not(.arrow--left)').addEventListener('click', (e) => {
+  testSlider.go('-1')
+})
