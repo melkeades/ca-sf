@@ -11,6 +11,8 @@ const mm = gsap.matchMedia()
 
 const sel = (e) => document.querySelector(e)
 const selAll = (e) => document.querySelectorAll(e)
+const vh = (e) => window.innerHeight * (e / 100)
+const vw = (e) => window.innerWidth * (e / 100)
 
 const lenis = new Lenis()
 function raf(time) {
@@ -26,6 +28,12 @@ switch (sel('.page-wrapper').getAttribute('data-page')) {
   default:
     console.log('unknown data-page')
 }
+ScrollTrigger.create({
+  animation: gsap.timeline().to('.navbar-sticky-wrap', { y: 0, opacity: 1 }, 0),
+  trigger: 'body',
+  start: vh(100) + ' top',
+  toggleActions: 'play none none reverse',
+})
 
 function home() {
   mm.add('(min-width: 992px)', () => {})
@@ -45,6 +53,9 @@ const testSlider = new Splide('.testimonials__slider', {
   breakpoints: {
     991: {
       perPage: 1,
+    },
+    767: {
+      gap: '1rem',
     },
   },
   autoScroll: { speed: 1, autoStart: false },
@@ -99,36 +110,6 @@ const trendsSplide = new Splide('.trends__slider', {
     },
   },
 })
-// const Components = trendsSplide.Components
-// // to remove duplicates for inactive/small slider
-// trendsSplide.on('overflow', function (isOverflow) {
-//   trendsSplide.go(0) // Reset the carousel position
-
-//   trendsSplide.options = {
-//     focus: isOverflow ? 'center' : '',
-//     // drag: isOverflow ? 'free' : false,
-//     clones: isOverflow ? undefined : 0, // Toggle clones
-//   }
-// })
-// let s2Overflow = true
-// // to center inactive/small slider
-// trendsSplide.on('resized', function () {
-//   var isOverflow = Components.Layout.isOverflow()
-//   s2Overflow = isOverflow
-//   var list = Components.Elements.list
-//   var lastSlide = Components.Slides.getAt(trendsSplide.length - 1)
-
-//   if (lastSlide) {
-//     // Toggles `justify-content: center`
-//     list.style.justifyContent = isOverflow ? '' : 'center'
-
-//     // Remove the last margin
-//     if (!isOverflow) {
-//       lastSlide.slide.style.marginRight = ''
-//       // console.log('asdf')
-//     }
-//   }
-// })
 if (document.readyState !== 'loading') {
   initCode()
 } else {
@@ -136,7 +117,6 @@ if (document.readyState !== 'loading') {
     initCode()
   })
 }
-
 function initCode() {
   trendsSplide.mount()
 }
