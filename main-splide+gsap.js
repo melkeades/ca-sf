@@ -34,7 +34,6 @@ ScrollTrigger.create({
   start: vh(100) + ' top',
   toggleActions: 'play none none reverse',
 })
-
 function home() {
   mm.add('(min-width: 992px)', () => {
     const propsItemsTl = gsap.from([...selAll('.props__item')], { opacity: 0, y: 100, duration: 2.5, ease: 'power4.out', stagger: 0.2 }, 0)
@@ -45,6 +44,55 @@ function home() {
       start: 'top center',
     })
   })
+
+  if (document.readyState !== 'loading') {
+    initCode()
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      initCode()
+    })
+  }
+  function initCode() {
+    // Trends slider
+    const trendsSplide = new Splide('.trends__slider', {
+      arrows: false,
+      pagination: false,
+      gap: '3rem',
+      perPage: 3,
+      breakpoints: {
+        991: {
+          perPage: 2,
+        },
+        767: {
+          perPage: 1,
+          gap: '1rem',
+        },
+      },
+    })
+    trendsSplide.on('mounted', () => {
+      setTimeout(trendsStInit, 100)
+    })
+    trendsSplide.mount()
+  }
+
+  sel('.trends__slider .round-arrow--left').addEventListener('click', (e) => {
+    trendsSplide.go('+1')
+  })
+  sel('.trends__slider .round-arrow:not(.round-arrow--left)').addEventListener('click', (e) => {
+    trendsSplide.go('-1')
+  })
+  function trendsStInit() {
+    console.log('fd')
+
+    mm.add('(min-width: 992px)', () => {
+      const trendsCardsTl = gsap.from([...selAll('.trends__card')], { opacity: 0, y: 100, duration: 1.5, ease: 'power1.out', stagger: 0.6 }, 0)
+      ScrollTrigger.create({
+        animation: trendsCardsTl,
+        trigger: '.trends__slider',
+        start: 'top center',
+      })
+    })
+  }
 
   mm.add('(max-width: 991px)', () => {})
   console.log('sf')
@@ -100,41 +148,6 @@ sel('.presence__arrows .round-arrow--left').addEventListener('click', (e) => {
 })
 sel('.presence__arrows .round-arrow:not(.round-arrow--left)').addEventListener('click', (e) => {
   presenceSplide.go('-1')
-})
-
-const trendsSplide = new Splide('.trends__slider', {
-  arrows: false,
-  pagination: false,
-  gap: '3rem',
-  perPage: 3,
-  // focus: 'center',
-  // autoWidth: true,
-  breakpoints: {
-    991: {
-      perPage: 2,
-    },
-    767: {
-      perPage: 1,
-      gap: '1rem',
-    },
-  },
-})
-if (document.readyState !== 'loading') {
-  initCode()
-} else {
-  document.addEventListener('DOMContentLoaded', function () {
-    initCode()
-  })
-}
-function initCode() {
-  trendsSplide.mount()
-}
-
-sel('.trends__slider .round-arrow--left').addEventListener('click', (e) => {
-  trendsSplide.go('+1')
-})
-sel('.trends__slider .round-arrow:not(.round-arrow--left)').addEventListener('click', (e) => {
-  trendsSplide.go('-1')
 })
 
 const bumpSplide = new Splide('.bump__slider', {
