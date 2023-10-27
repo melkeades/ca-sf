@@ -90,6 +90,13 @@ function study() {
 function studies() {
   testSliderInit()
 }
+function service() {
+  testSliderInit()
+  presenceSliderInit()
+}
+function services() {
+  testSliderInit()
+}
 
 function testSliderInit() {
   const testSlider = new Splide('.testimonials__slider', {
