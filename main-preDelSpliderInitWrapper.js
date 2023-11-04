@@ -102,16 +102,9 @@ function services() {
   testSliderInit()
 }
 function about() {
-  mm.add('(min-width: 992px)', () => {
-    const propsItemsTl = gsap.from([...selAll('.about-props_item')], { opacity: 0, y: 100, duration: 2.5, ease: 'power4.out', stagger: 0.2 }, 0)
-
-    ScrollTrigger.create({
-      animation: propsItemsTl,
-      trigger: '.about-props_list',
-      start: 'top center',
-    })
-  })
+  // showSplideMq('team__slider', mqt, '<')
   testSliderInit()
+  // let teamSplide
   let teamSplide = { item: {} }
 
   mm.add('(min-width: 992px)', () => {
@@ -125,24 +118,9 @@ function about() {
     ;[teamSplide.item, teamSplide.prev, teamSplide.next] = teamSliderInit(teamSplide.prev, teamSplide.next)
   })
 }
-function blog() {
-  const xClass = '.filter__search'
-  const searchInput$ = sel(xClass)
-  const searchReset$ = sel('.x-ico')
-
-  searchReset$.addEventListener('click', (e) => {
-    searchInput$.value = searchInput$.defaultValue
-  })
-  mm.add('(min-width: 992px)', () => {
-    sel('.filter-select__select').setAttribute('multiple', '')
-  })
-  mm.add('(max-width: 991px)', () => {
-    sel('.filter-select__select').removeAttribute('multiple', '')
-  })
-}
-function blogPost() {}
-function teamSliderInit(oldPrevHandler, oldNextHandler) {
-  const teamSlider = new Splide('.team__slider', {
+function teamSliderInit(sliderClass, oldPrevHandler, oldNextHandler) {
+  const splideClass = sliderClass || '.team__slider'
+  const teamSlider = new Splide(splideClass, {
     arrows: false,
     pagination: false,
     type: 'loop',
