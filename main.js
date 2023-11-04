@@ -126,8 +126,7 @@ function about() {
   })
 }
 function blog() {
-  const xClass = '.filter__search'
-  const searchInput$ = sel(xClass)
+  const searchInput$ = sel('.filter__search')
   const searchReset$ = sel('.x-ico')
 
   searchReset$.addEventListener('click', (e) => {
@@ -141,6 +140,9 @@ function blog() {
   })
 }
 function blogPost() {}
+function contact() {
+  testSliderInit()
+}
 function teamSliderInit(oldPrevHandler, oldNextHandler) {
   const teamSlider = new Splide('.team__slider', {
     arrows: false,
