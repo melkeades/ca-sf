@@ -386,6 +386,20 @@ function addSplideClasses(slider) {
   slide.forEach((slide) => slide.classList.add('splide__slide'))
 }
 
+// function showSplideOld() {
+//   let teamSplide = {}
+
+//   mm.add('(min-width: 992px)', () => {
+//     if (Object.keys(teamSplide).length) {
+//       removeSplideClasses('team__slider')
+//       teamSplide.destroy() // to avoid the slides width issues on viewport resize
+//     }
+//   })
+//   mm.add('(max-width: 991px)', () => {
+//     addSplideClasses('team__slider')
+//     teamSplide = teamSliderInit(Object.keys(teamSplide).length && true)
+//   })
+// }
 function showSplideMq(splide, splideClass, breakpoint = mqt, relativeToBp = '<', arrows = false) {
   let splideItem = {}
 
@@ -406,18 +420,3 @@ function showSplideMq(splide, splideClass, breakpoint = mqt, relativeToBp = '<',
     relativeToBp === '>' ? removeSplide() : addSplide()
   })
 }
-
-// function showSplideOld() {
-//   let teamSplide = {}
-
-//   mm.add('(min-width: 992px)', () => {
-//     if (Object.keys(teamSplide).length) {
-//       removeSplideClasses('team__slider')
-//       teamSplide.destroy() // to avoid the slides width issues on viewport resize
-//     }
-//   })
-//   mm.add('(max-width: 991px)', () => {
-//     addSplideClasses('team__slider')
-//     teamSplide = teamSliderInit(Object.keys(teamSplide).length && true)
-//   })
-// }
