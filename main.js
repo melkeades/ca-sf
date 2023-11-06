@@ -101,6 +101,7 @@ function service() {
 function services() {
   testSliderInit()
 }
+function terms() {}
 function about() {
   mm.add('(min-width: 992px)', () => {
     const propsItemsTl = gsap.from([...selAll('.about-props_item')], { opacity: 0, y: 100, duration: 2.5, ease: 'power4.out', stagger: 0.2 }, 0)
