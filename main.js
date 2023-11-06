@@ -47,6 +47,9 @@ switch (sel('.page-wrapper').getAttribute('data-page')) {
   case 'blog':
     blog()
     break
+  case 'blogCategory':
+    blogCategory()
+    break
   case 'blog-post':
     blogPost()
     break
@@ -101,7 +104,9 @@ function service() {
 function services() {
   testSliderInit()
 }
+
 function terms() {}
+
 function about() {
   mm.add('(min-width: 992px)', () => {
     const propsItemsTl = gsap.from([...selAll('.about-props_item')], { opacity: 0, y: 100, duration: 2.5, ease: 'power4.out', stagger: 0.2 }, 0)
@@ -127,12 +132,8 @@ function about() {
   })
 }
 function blog() {
-  const searchInput$ = sel('.filter__search')
-  const searchReset$ = sel('.x-ico')
+  blogCategory()
 
-  searchReset$.addEventListener('click', (e) => {
-    searchInput$.value = searchInput$.defaultValue
-  })
   mm.add('(min-width: 992px)', () => {
     sel('.filter-select__select').setAttribute('multiple', '')
   })
@@ -140,10 +141,21 @@ function blog() {
     sel('.filter-select__select').removeAttribute('multiple', '')
   })
 }
+function blogCategory() {
+  const searchInput$ = sel('.filter__search')
+  const searchReset$ = sel('.x-ico')
+
+  searchReset$.addEventListener('click', (e) => {
+    searchInput$.value = searchInput$.defaultValue
+  })
+}
+
 function blogPost() {}
+
 function contact() {
   testSliderInit()
 }
+
 function teamSliderInit(oldPrevHandler, oldNextHandler) {
   const teamSlider = new Splide('.team__slider', {
     arrows: false,
