@@ -47,7 +47,7 @@ switch (sel('.page-wrapper').getAttribute('data-page')) {
   case 'blog':
     blog()
     break
-  case 'blogCategory':
+  case 'blog-category':
     blogCategory()
     break
   case 'blog-post':
