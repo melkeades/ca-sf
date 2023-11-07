@@ -16,6 +16,7 @@
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@studio-freight/lenis": "^1.0.16",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
     "gsap": "^3.12.2",
     "jquery": "^3.7.0",
     "lightgallery": "^2.7.2",

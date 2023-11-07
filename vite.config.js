@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 // import eslintPlugin from 'vite-plugin-eslint'
 
 // vite.config.js
 export default defineConfig({
   // plugins: [eslintPlugin({ cache: false })],
+  // plugins: [basicSsl()],
   server: {
+    // https: true,
     host: 'localhost',
     cors: '*',
     hmr: {
