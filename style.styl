@@ -39,7 +39,7 @@ html.lenis
   &::-webkit-scrollbar // hide scrollbar in Chrome
     display none
 
-@media screen and (min-width 992px), not screen and (hover none)
+@media screen and (min-width 992px), not screen and (hover none), not screen and (pointer coarse)
   .filter-select__select
 
     option
@@ -73,7 +73,7 @@ filterSelectMob()
   background-size 1em !important
   border none !important
 
-@media screen and (max-width 991px), screen and (hover none)
+@media screen and (max-width 991px), screen and (hover none), screen and (pointer coarse)
   .filter-select__select
      filterSelectMob() 
 
