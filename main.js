@@ -141,6 +141,7 @@ function blog() {
     mm.add('(max-width: 991px)', () => {
       sel('.filter-select__select').removeAttribute('multiple', '')
     })
+  } else {
   }
 }
 function blogCategory() {
