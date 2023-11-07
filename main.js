@@ -7,7 +7,7 @@ import '@splidejs/splide/css'
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll'
 
 gsap.registerPlugin(ScrollTrigger)
-const mm = gsap.matchMedia()
+const mq = gsap.matchMedia()
 const mqd = 1440
 const mqt = 991
 const mql = 767
@@ -73,7 +73,7 @@ ScrollTrigger.create({
 })
 
 function home() {
-  mm.add('(min-width: 992px)', () => {
+  mq.add('(min-width: 992px)', () => {
     const propsItemsTl = gsap.from([...selAll('.props__item')], { opacity: 0, y: 100, duration: 2.5, ease: 'power4.out', stagger: 0.2 }, 0)
 
     ScrollTrigger.create({
@@ -86,7 +86,7 @@ function home() {
   presenceSliderInit()
   trendsSliderInit()
   bumpSliderInit()
-  mm.add('(max-width: 991px)', () => {})
+  mq.add('(max-width: 991px)', () => {})
   console.log('sf')
 }
 
@@ -108,7 +108,7 @@ function services() {
 function terms() {}
 
 function about() {
-  mm.add('(min-width: 992px)', () => {
+  mq.add('(min-width: 992px)', () => {
     const propsItemsTl = gsap.from([...selAll('.about-props_item')], { opacity: 0, y: 100, duration: 2.5, ease: 'power4.out', stagger: 0.2 }, 0)
 
     ScrollTrigger.create({
@@ -120,13 +120,13 @@ function about() {
   testSliderInit()
   let teamSplide = { item: {} }
 
-  mm.add('(min-width: 992px)', () => {
+  mq.add('(min-width: 992px)', () => {
     if (Object.keys(teamSplide.item).length) {
       removeSplideClasses('team__slider')
       teamSplide.item.destroy() // to avoid the slides width issues on viewport resize
     }
   })
-  mm.add('(max-width: 991px)', () => {
+  mq.add('(max-width: 991px)', () => {
     addSplideClasses('team__slider')
     ;[teamSplide.item, teamSplide.prev, teamSplide.next] = teamSliderInit(teamSplide.prev, teamSplide.next)
   })
@@ -137,10 +137,10 @@ function blog() {
   const isSafari = () => navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') <= -1
 
   if (!isSafari()) {
-    mm.add('(min-width: 992px)', () => {
+    mq.add('(min-width: 992px)', () => {
       sel('.filter-select__select').setAttribute('multiple', '')
     })
-    mm.add('(max-width: 991px)', () => {
+    mq.add('(max-width: 991px)', () => {
       sel('.filter-select__select').removeAttribute('multiple', '')
     })
   } else {
@@ -431,10 +431,10 @@ function showSplideMq(splide, splideClass, breakpoint = mqt, relativeToBp = '<',
       splideItem.destroy() // to avoid the slides width issues on viewport resize
     }
   }
-  mm.add(`(min-width: ${breakpoint + 1}px)`, () => {
+  mq.add(`(min-width: ${breakpoint + 1}px)`, () => {
     relativeToBp === '>' ? addSplide() : removeSplide()
   })
-  mm.add(`(max-width: ${breakpoint}px)`, () => {
+  mq.add(`(max-width: ${breakpoint}px)`, () => {
     relativeToBp === '>' ? removeSplide() : addSplide()
   })
 }
