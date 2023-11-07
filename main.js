@@ -47,7 +47,7 @@ switch (sel('.page-wrapper').getAttribute('data-page')) {
   case 'blog':
     blog()
     break
-  case 'blog-category':
+  case 'blogCategory':
     blogCategory()
     break
   case 'blog-post':
@@ -133,13 +133,15 @@ function about() {
 }
 function blog() {
   blogCategory()
-
-  mm.add('(min-width: 992px)', () => {
-    sel('.filter-select__select').setAttribute('multiple', '')
-  })
-  mm.add('(max-width: 991px)', () => {
-    sel('.filter-select__select').removeAttribute('multiple', '')
-  })
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  if (!isSafari) {
+    mm.add('(min-width: 992px)', () => {
+      sel('.filter-select__select').setAttribute('multiple', '')
+    })
+    mm.add('(max-width: 991px)', () => {
+      sel('.filter-select__select').removeAttribute('multiple', '')
+    })
+  }
 }
 function blogCategory() {
   const searchInput$ = sel('.filter__search')
