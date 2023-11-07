@@ -133,7 +133,8 @@ function about() {
 }
 function blog() {
   blogCategory()
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  const isSafari = () => navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') <= -1
   if (!isSafari) {
     mm.add('(min-width: 992px)', () => {
       sel('.filter-select__select').setAttribute('multiple', '')
